@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Type 1</title>
+        <meta charset='utf-8' />
+    </head>
+    <body>
+        <div>
+            <p id="message"><%= message %></p>
+        </div>
+        <hr>
+        <div>
+            <form action='' method='POST' id="Submit">
+                <input id="Input" type='text' name='message' />
+                <input type='submit' value='Submit' />
+            </form>
+        </div>
+    </body>
+</html>
+<script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("form#Submit").on('submit', function(e){
+            e.preventDefault();
+            var data = $('#Input')[0].value;
+            $.ajax({
+                type: 'post',
+                url: '/api',
+                data: {'message':data},
+                dataType: 'json',
+            })
+            .done(function(data){
+                $('#message')[0].innerHTML = data.message;
+            });
+        });
+
+    });
+</script>

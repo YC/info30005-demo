@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title>Type 3</title>
+        <meta charset='utf-8' />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    </head>
+
+    <body>
+        <div>
+            <p id="message"><%= message %></p>
+        </div>
+        <hr>
+        <div>
+            <form id="submitForm">
+                <input id="messageTextBox" type='text' name='message' />
+                <input id="submit" type='submit' value='Submit' />
+            </form>
+        </div>
+    </body>
+
+    <script>
+        var socket = io.connect('http://localhost:3000');
+        socket.on('message_changed', function (data) {
+            document.getElementById('message').innerHTML = data;
+        });
+    </script>
+
+    <script>
+        // Updates the message by getting the message from server using GET request
+        function updateMessage() {
+            // Get the message element
+            const messageElement = document.getElementById('message');
+
+            // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:3000/api", true);
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        const response = xhr.responseText;
+                        const resJSON = JSON.parse(response);
+                        messageElement.innerHTML = resJSON.message;
+                    } else {
+                        messageElement.innerHTML = xhr.statusText;
+                    }
+                }
+            }
+            xhr.onerror = function (e) {
+                messageElement.innerHTML = request.statusText;
+            }
+            xhr.send(null);
+        }
+
+        // Handle increment click
+        // Sends POST request to server to update message
+        document.getElementById('submitForm').onsubmit = function () {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:3000/api", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        const response = xhr.responseText;
+                        const resJSON = JSON.parse(response);
+                        document.getElementById('message').innerHTML = resJSON.message;
+                    }
+                }
+            }
+            xhr.send(`message=${document.getElementById('messageTextBox').value}`);
+            return false;
+        }
+
+        // Update message on load
+        updateMessage();
+    </script>
+</html>
