@@ -2,17 +2,25 @@ import React, { useState, useEffect } from "react";
 import { getMessages, sendMessage } from './api';
 
 function App() {
+    const [loadRequired, setLoadRequired] = useState(true);
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState(null);
 
     useEffect(() => {
+      if (!loadRequired) {
+        return;
+      }
+
+      setLoadRequired(false);
       getMessages().then((msg) => {
         setMessages(msg);
       });
-    });
+    }, [loadRequired, messages]);
 
     function submit() {
-      sendMessage(message);
+      sendMessage(message).then(() => {
+        setLoadRequired(true);
+      });
     }
 
     if (messages === null) {
