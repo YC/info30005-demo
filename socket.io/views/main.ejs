@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>w8</title>
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>
+        <form action="/" method="POST">
+            <input type="text" name="message" value="" />
+            <input type="submit" />
+        </form>
+        <ul>
+            <%_ for (const message of messages) { _%>
+                <li><%= message %></li>
+            <%_ } _%>
+        </ul>
+    </body>
+    <script>
+        const socket = io.connect('/');
+        socket.on('message', (msg) => {
+            // append item
+            const list_item = document.createElement('li');
+            list_item.innerText = msg;
+            list.appendChild(list_item);
+        });
+
+        const form = document.querySelector('form');
+        const text = document.querySelector('input[name="message"]');
+        const list = document.querySelector('ul');
+
+        // adapted from mdn
+        // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+        // https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_forms_through_JavaScript
+        form.onsubmit = function() {
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST", '/', true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() {
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    console.log('Request sent');
+                }
+            }
+
+            xhr.send(encodeURI('message=' + text.value));
+            return false;
+        }
+    </script>
+</html>

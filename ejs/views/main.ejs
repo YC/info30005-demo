@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>w8</title>
+    </head>
+    <body>
+        <form action="/" method="POST">
+            <input type="text" name="message" value="" />
+            <input type="submit" />
+        </form>
+        <ul>
+            <%_ for (const message of messages) { _%>
+                <li><%= message %></li>
+            <%_ } _%>
+        </ul>
+    </body>
+</html>
