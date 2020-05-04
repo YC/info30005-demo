@@ -9,9 +9,6 @@ app.use(cors());
 // body parsing middleware
 app.use(bodyParser.json());
 
-// init view engine
-app.set('view engine', 'ejs');
-
 // stores our array of messages
 const messages = [];
 
