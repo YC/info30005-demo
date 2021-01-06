@@ -7,7 +7,7 @@ const controllers = require('../../controllers');
 describe('controllers test', () => {
     const sandbox = sinon.createSandbox();
 
-    after(async() => {
+    after(async () => {
         sandbox.restore();
     });
 
@@ -18,11 +18,11 @@ describe('controllers test', () => {
         };
         const res = {
             json: fake
-        }
+        };
 
         // replace create function
         sandbox.replace(Message, 'create', (obj) => {
-            return Promise.resolve({ ...obj, _id: 'some_id'});
+            return Promise.resolve({ ...obj, _id: 'some_id' });
         });
 
         await controllers.addMessage(req, res);

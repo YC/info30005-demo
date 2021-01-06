@@ -32,7 +32,7 @@ io.on('connection', function (socket) {
         // not sure why this log statement isn't printed...
         console.log(`new message ${msg}`);
     });
-    socket.on('disconnect', function() {
+    socket.on('disconnect', function () {
         console.log('user disconnected');
     });
 });

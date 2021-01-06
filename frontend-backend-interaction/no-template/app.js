@@ -14,8 +14,7 @@ app.get('/', (req, res) => {
     for (const message of messages) {
         messages_html += `<li>${message}</li>`;
     }
-    const output =
-`
+    const output = `
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,7 +30,7 @@ app.get('/', (req, res) => {
         </ul>
     </body>
 </html>
-`
+`;
     res.send(output);
 });
 // POST new message

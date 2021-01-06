@@ -4,8 +4,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 // connect
-mongoose.connect('mongodb://localhost:27017/w10',
-    { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/w10', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 // url encoded data (e.g. forms)
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,4 +24,6 @@ app.post('/api', controllers.addMessage);
 app.get('/view', controllers.getMessageView);
 app.post('/view', controllers.addMessageView);
 
-app.listen(3000, () => { console.log('Started') });
+app.listen(3000, () => {
+    console.log('Started');
+});

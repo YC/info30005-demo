@@ -12,7 +12,7 @@ describe('controllers integration', () => {
         const res = await supertest(app).post('/api').send({ message: 'hi' });
         expect(res.status).to.equal(200);
         expect(res.type).to.equal('application/json');
-        expect(res.body).to.have.property("_id");
+        expect(res.body).to.have.property('_id');
         expect(res.body.message).to.equal('hi');
     });
 
@@ -23,7 +23,7 @@ describe('controllers integration', () => {
 
         const messages = await Message.find({});
         expect(messages).to.have.lengthOf(1);
-        expect(messages[0]).to.have.property("_id");
+        expect(messages[0]).to.have.property('_id');
         expect(messages[0].message).to.equal('hi');
     });
 });

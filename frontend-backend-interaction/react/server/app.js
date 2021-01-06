@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 // POST new message
 app.post('/', (req, res) => {
     const message = req.body.message;
-    messages.push({ id: messages.length,  message });
+    messages.push({ id: messages.length, message });
     return res.send(messages);
 });
 
