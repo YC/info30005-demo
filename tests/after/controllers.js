@@ -26,5 +26,5 @@ module.exports = {
     addMessage,
     getMessages,
     getMessageView,
-    addMessageView
+    addMessageView,
 };

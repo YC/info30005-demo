@@ -3,25 +3,25 @@ const expect = chai.expect;
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-describe('Example usage of mongoose', function() {
+describe('Example usage of mongoose', function () {
     // Define schemas
     const commentSchema = new Schema({ content: String });
     const postSchema = new Schema({
         title: { type: String, required: true },
         content: String,
         views: { type: Number, required: true, default: 0 },
-        comments: [commentSchema]
+        comments: [commentSchema],
     });
 
     // Define models
     var Post = mongoose.model('Post', postSchema);
 
-    before(async function() {
+    before(async function () {
         // Connect to db
         await mongoose.connect('mongodb://localhost:27017/example', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useFindAndModify: false
+            useFindAndModify: false,
         });
 
         // Drop previous database (use with caution)
@@ -29,7 +29,7 @@ describe('Example usage of mongoose', function() {
     });
 
     const POST = { title: 'Hello', content: 'World' };
-    it('Create document', async function() {
+    it('Create document', async function () {
         const created = await Post.create(POST);
         expect(created).has.property('id');
         expect(created).has.property('title');
@@ -40,7 +40,7 @@ describe('Example usage of mongoose', function() {
         expect(created.views).to.equal(0);
     });
 
-    it('Read (Find) document', async function() {
+    it('Read (Find) document', async function () {
         // Create post
         const POST1 = { title: '?' };
         const created = await Post.create(POST1);
@@ -58,8 +58,7 @@ describe('Example usage of mongoose', function() {
         expect(posts[0].id).to.equal(created.id);
     });
 
-
-    it('Update document', async function() {
+    it('Update document', async function () {
         // Create post
         const POST2 = { title: 'foo', content: '' };
         const created = await Post.create(POST2);
@@ -69,7 +68,7 @@ describe('Example usage of mongoose', function() {
 
         // Update 1
         await Post.findByIdAndUpdate(created._id, {
-            content: `${NEW_CONTENT} ${++i}`
+            content: `${NEW_CONTENT} ${++i}`,
         });
         // Update 2
         await Post.findOneAndUpdate(
@@ -86,8 +85,7 @@ describe('Example usage of mongoose', function() {
         expect(newPost.content).to.equal(`${NEW_CONTENT} 3`);
     });
 
-
-    it('Delete document', async function() {
+    it('Delete document', async function () {
         // Create post
         const POST3 = { title: 'cool' };
         await Post.create(POST3);
@@ -100,7 +98,7 @@ describe('Example usage of mongoose', function() {
         expect(posts).to.have.lengthOf(0);
     });
 
-    it('Subdocument', async function() {
+    it('Subdocument', async function () {
         // Add post, add comment
         const post = await Post.create(POST);
         post.comments.push({ content: 'Hi' });
@@ -115,7 +113,7 @@ describe('Example usage of mongoose', function() {
         await created.comments.id(created.comments[0]._id).remove();
     });
 
-    after(function() {
+    after(function () {
         mongoose.disconnect();
     });
 });

@@ -8,7 +8,7 @@ const commentSchema = new Schema({ content: String });
 const postSchema = new Schema({
     title: { type: String, required: true },
     content: String,
-    comments: [commentSchema]
+    comments: [commentSchema],
 });
 
 // Define model

@@ -22,14 +22,14 @@ app.use('/', indexRouter);
 app.use('/api', apiRouter);
 
 // Catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.locals.message = 'Not found';
     res.locals.error = {};
     res.render('error');
 });
 
 // Error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     // Set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};

@@ -1,5 +1,5 @@
 // Home page
-const getIndex = function(req, res, next) {
+const getIndex = function (req, res, next) {
     if (req.isAuthenticated()) {
         // Logged in
         res.render('index', { title: 'Express', user: req.user.id });

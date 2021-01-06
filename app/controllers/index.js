@@ -1,13 +1,13 @@
 const Post = require('../models/post');
 
 // Home page
-const getHome = async function(req, res, next) {
+const getHome = async function (req, res, next) {
     const posts = await Post.find({});
     return res.render('index', { posts });
 };
 
 // Renders page for post
-const getPost = async function(req, res, next) {
+const getPost = async function (req, res, next) {
     const postID = req.params.postID;
     try {
         const post = await Post.findById(postID);
@@ -23,7 +23,7 @@ const getPost = async function(req, res, next) {
 };
 
 // Delete post
-const deletePost = async function(req, res, next) {
+const deletePost = async function (req, res, next) {
     const postID = req.params.postID;
     try {
         const post = await Post.findByIdAndDelete(postID);
@@ -39,12 +39,12 @@ const deletePost = async function(req, res, next) {
 };
 
 // New post
-const newPostPage = async function(req, res, next) {
+const newPostPage = async function (req, res, next) {
     return res.render('post_new');
 };
 
 // Create new post
-const newPost = async function(req, res, next) {
+const newPost = async function (req, res, next) {
     const content = req.body.content;
     const title = req.body.title;
 
@@ -57,7 +57,7 @@ const newPost = async function(req, res, next) {
 };
 
 // Modify post
-const modifyPost = async function(req, res, next) {
+const modifyPost = async function (req, res, next) {
     const content = req.body.content;
     const title = req.body.title;
 
@@ -79,7 +79,6 @@ const modifyPost = async function(req, res, next) {
 
         const r = await post.save();
         return res.render('post', { post: r });
-
     } catch (err) {
         return next(err);
     }

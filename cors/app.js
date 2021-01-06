@@ -9,17 +9,17 @@ if (process.env.CORS) {
     app.use(cors());
 }
 
-app.get('/', function(req, res, next) {
+app.get('/', function (req, res, next) {
     return res.json({ message: 'Hello World!' });
 });
 
 // Catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     return res.json({ status: 'error', error: 'Page not found' });
 });
 
 // Error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
     res.status(err.status || 500);

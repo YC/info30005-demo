@@ -26,7 +26,7 @@ app.use(
     session({
         secret: 'keyboard cat',
         saveUninitialized: false,
-        resave: false
+        resave: false,
     })
 );
 
@@ -53,12 +53,12 @@ passport.deserializeUser(async (obj, done) => {
 // Defines local authentication strategy for Passport
 // http://www.passportjs.org/docs/downloads/html/#strategies
 passport.use(
-    new LocalStrategy(function(username, password, done) {
+    new LocalStrategy(function (username, password, done) {
         // Run database query instead
         // For this example, we'll allow any login with the password 'password'
         if (password !== 'password') {
             return done(undefined, false, {
-                message: 'Incorrect username/password'
+                message: 'Incorrect username/password',
             });
         }
         // If user exists and password matches the hash in the database
@@ -71,14 +71,14 @@ passport.use(
 app.use('/', indexRouter);
 
 // Catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.locals.message = 'Not found';
     res.locals.error = {};
     res.render('error');
 });
 
 // Error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     // Set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};

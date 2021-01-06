@@ -11,8 +11,8 @@ const app = require('../bin/www');
 module.exports = app;
 
 // Wait for database connection to open
-before(function(done) {
-    mongoose.connection.once('open', function() {
+before(function (done) {
+    mongoose.connection.once('open', function () {
         done();
     });
 });
@@ -21,7 +21,7 @@ before(function(done) {
 require('./api.js');
 
 // Close database connection and server
-after(function(done) {
+after(function (done) {
     mongoose.disconnect();
     done();
 });

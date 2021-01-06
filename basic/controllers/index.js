@@ -1,5 +1,5 @@
 // Home page
-const getIndex = function(req, res, next) {
+const getIndex = function (req, res, next) {
     res.render('index', { title: 'Express' });
 };
 

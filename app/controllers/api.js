@@ -1,17 +1,17 @@
 const Post = require('../models/post');
 
 // Get all posts
-const getPosts = async function(req, res, next) {
+const getPosts = async function (req, res, next) {
     try {
         const posts = await Post.find({});
-        return res.json({ posts: posts.map(p => p.toJSON()) });
+        return res.json({ posts: posts.map((p) => p.toJSON()) });
     } catch (err) {
         return next(err);
     }
 };
 
 // New post
-const newPost = async function(req, res, next) {
+const newPost = async function (req, res, next) {
     const content = req.body.content;
     const title = req.body.title;
 
@@ -24,7 +24,7 @@ const newPost = async function(req, res, next) {
 };
 
 // Get specific post
-const getPost = async function(req, res, next) {
+const getPost = async function (req, res, next) {
     try {
         const post = await Post.findById(req.params.postID);
         if (!post) {
@@ -39,7 +39,7 @@ const getPost = async function(req, res, next) {
 };
 
 // Modify post content
-const modifyPost = async function(req, res, next) {
+const modifyPost = async function (req, res, next) {
     const content = req.body.content;
     const title = req.body.title;
 
@@ -67,7 +67,7 @@ const modifyPost = async function(req, res, next) {
 };
 
 // Delete post
-const deletePost = async function(req, res, next) {
+const deletePost = async function (req, res, next) {
     try {
         const post = await Post.findByIdAndDelete(req.params.postID);
         if (!post) {
@@ -82,7 +82,7 @@ const deletePost = async function(req, res, next) {
 };
 
 // Add comment
-const addComment = async function(req, res, next) {
+const addComment = async function (req, res, next) {
     const postID = req.params.postID;
     const content = req.body.content;
 
@@ -105,7 +105,7 @@ const addComment = async function(req, res, next) {
 };
 
 // Modify comment
-const modifyComment = async function(req, res, next) {
+const modifyComment = async function (req, res, next) {
     const postID = req.params.postID;
     const commentID = req.params.commentID;
     const newContent = req.body.content;
@@ -137,7 +137,7 @@ const modifyComment = async function(req, res, next) {
 };
 
 // Delete comment
-const deleteComment = async function(req, res, next) {
+const deleteComment = async function (req, res, next) {
     const postID = req.params.postID;
     const commentID = req.params.commentID;
 
@@ -175,5 +175,5 @@ module.exports = {
     deletePost,
     addComment,
     modifyComment,
-    deleteComment
+    deleteComment,
 };

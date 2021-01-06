@@ -3,22 +3,22 @@ const mongoose = require('mongoose');
 const app = require('./index');
 
 // Integration tests for API
-describe('API Integration Tests', function() {
+describe('API Integration Tests', function () {
     const agent = request.agent(app);
 
     // Clear collections before starting
-    before(async function() {
+    before(async function () {
         await mongoose.connection.db.dropDatabase();
     });
 
     // Clear collection before each test
-    beforeEach(async function() {
+    beforeEach(async function () {
         try {
             await mongoose.connection.collections['posts'].deleteMany({});
         } catch (err) {}
     });
 
-    it('Create post', async function() {
+    it('Create post', async function () {
         const res = await agent
             .post(`/api/posts`)
             .send({ title: 'hello', content: 'world' });
@@ -29,7 +29,7 @@ describe('API Integration Tests', function() {
         expect(res.body.content).to.equal('world');
     });
 
-    it('Get multiple posts', async function() {
+    it('Get multiple posts', async function () {
         // Create posts
         await agent
             .post(`/api/posts`)
@@ -44,7 +44,7 @@ describe('API Integration Tests', function() {
         expect(res.body.posts).to.have.lengthOf(2);
     });
 
-    it('Get post', async function() {
+    it('Get post', async function () {
         // Create post
         const created = await agent
             .post(`/api/posts`)
@@ -58,7 +58,7 @@ describe('API Integration Tests', function() {
         expect(res.body.content).to.equal('world');
     });
 
-    it('Modify post', async function() {
+    it('Modify post', async function () {
         // Create post
         const created = await agent
             .post(`/api/posts`)
@@ -75,7 +75,7 @@ describe('API Integration Tests', function() {
         expect(res.body.content).to.equal('ABCD');
     });
 
-    it('Delete post', async function() {
+    it('Delete post', async function () {
         // Create post
         const created = await agent
             .post(`/api/posts`)
@@ -91,7 +91,7 @@ describe('API Integration Tests', function() {
         expect(res.body.posts).to.have.lengthOf(0);
     });
 
-    it('Add comment', async function() {
+    it('Add comment', async function () {
         // Create post
         const created = await agent
             .post(`/api/posts`)
@@ -111,7 +111,7 @@ describe('API Integration Tests', function() {
         expect(post.body.comments).to.have.lengthOf(1);
     });
 
-    it('Modify comment', async function() {
+    it('Modify comment', async function () {
         // Create post
         const created = await agent
             .post(`/api/posts`)
@@ -136,7 +136,7 @@ describe('API Integration Tests', function() {
         expect(post.body.comments[0].content).to.equal('hi2');
     });
 
-    it('Delete comment', async function() {
+    it('Delete comment', async function () {
         // Create post
         const created = await agent
             .post(`/api/posts`)

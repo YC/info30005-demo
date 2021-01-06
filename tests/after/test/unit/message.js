@@ -14,10 +14,10 @@ describe('controllers test', () => {
     it('add message', async () => {
         const fake = sinon.fake();
         const req = {
-            body: { message: 'hi' }
+            body: { message: 'hi' },
         };
         const res = {
-            json: fake
+            json: fake,
         };
 
         // replace create function

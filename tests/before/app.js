@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 // connect
 mongoose.connect('mongodb://localhost:27017/w10', {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
 });
 
 // url encoded data (e.g. forms)

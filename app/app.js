@@ -21,14 +21,14 @@ app.use('/', indexRouter);
 app.use('/api', apiRouter);
 
 // Catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     const err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
 // Error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     // Only provide stack trace in development
     const response = {};
     response.message = err.message;

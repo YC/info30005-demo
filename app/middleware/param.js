@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 // Verifies that param is a mongodb object ID
-const verifyParam = function(paramName) {
-    return function(req, res, next) {
+const verifyParam = function (paramName) {
+    return function (req, res, next) {
         if (
             !req.params[paramName] ||
             !mongoose.Types.ObjectId.isValid(req.params[paramName])

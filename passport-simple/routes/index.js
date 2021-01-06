@@ -11,17 +11,14 @@ router.post(
     '/login',
     passport.authenticate('local', {
         successRedirect: '/',
-        failureRedirect: '/'
+        failureRedirect: '/',
     })
 );
 
 // Handle logout
-router.post(
-    '/logout',
-    (req, res) => {
-        req.logout();
-        res.redirect('/');
-    }
-)
+router.post('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
 
 module.exports = router;

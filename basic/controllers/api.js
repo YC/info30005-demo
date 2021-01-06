@@ -1,5 +1,5 @@
 // API root
-const getAPIRoot = function(req, res, next) {
+const getAPIRoot = function (req, res, next) {
     res.json({ foo: 'bar' });
 };
 
