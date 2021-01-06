@@ -1,0 +1,22 @@
+{
+  "name": "example-modules-babel-es6",
+  "version": "1.0.0",
+  "description": "The modules example with es6 transpiled with Babel",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "start": "nodemon --exec npm run babel-node -- src/index.js",
+    "babel-node": "babel-node",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.4",
+    "nodemon": "^1.18.10"
+  }
+}

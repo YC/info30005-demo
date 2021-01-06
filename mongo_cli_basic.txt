@@ -1,0 +1,12 @@
+# DB
+show dbs
+
+# Collection
+use <collection>
+show collections
+
+# Table
+show tables
+
+# And so on
+db.<table-name>.find({})

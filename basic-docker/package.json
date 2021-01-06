@@ -1,0 +1,15 @@
+{
+  "name": "basic-docker-example",
+  "version": "1.0.0",
+  "description": "Basic skeleton with Docker",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
