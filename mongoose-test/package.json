@@ -1,0 +1,18 @@
+{
+  "name": "mongoose-example",
+  "version": "1.0.0",
+  "description": "Basic usage of mongoose example",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^5.11.10"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1"
+  }
+}

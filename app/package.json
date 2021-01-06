@@ -1,0 +1,23 @@
+{
+  "name": "app-example",
+  "version": "1.0.0",
+  "description": "Basic app and API without authentication",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bin/www",
+    "test": "mocha test/index.js --exit"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.11.10"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.2.1",
+    "mocha": "^6.2.3"
+  }
+}

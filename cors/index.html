@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Request Test</title>
+    <meta charset='utf-8' />
+</head>
+
+<body>
+    <div>
+        <p>The message is: <span id="message">loading...</span></p>
+    </div>
+</body>
+<script>
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests
+    const request = new XMLHttpRequest();
+    request.open("GET", "http://localhost:3000", true);
+    request.onload = function (e) {
+        if (request.readyState === 4) {
+            if (request.status === 200) {
+                document.getElementById('message').innerHTML = request.responseText;
+                console.log(request.responseText);
+            } else {
+                document.getElementById('message').innerHTML = request.statusText;
+                console.error(request.statusText);
+            }
+        }
+    }
+    request.onerror = function (e) {
+        document.getElementById('message').innerHTML = request.statusText;
+    }
+    request.send(null);
+</script>
+
+</html>

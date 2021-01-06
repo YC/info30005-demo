@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Posts</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>Posts</h1>
+    <a href="./posts/new">New post</a>
+    <ul>
+        <% for (const post of posts) { %>
+          <li><a href=./posts/<%= post._id %>><%= post.title %></a></li>
+        <% } %>
+    </ul>
+  </body>
+</html>
