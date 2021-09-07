@@ -18,11 +18,7 @@ describe('Example usage of mongoose', function () {
 
     before(async function () {
         // Connect to db
-        await mongoose.connect('mongodb://localhost:27017/example', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useFindAndModify: false,
-        });
+        await mongoose.connect('mongodb://localhost:27017/example');
 
         // Drop previous database (use with caution)
         await mongoose.connection.db.dropDatabase();
