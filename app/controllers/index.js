@@ -2,21 +2,21 @@ const Post = require('../models/post');
 
 // Home page
 const getHome = async function (req, res, next) {
-    const posts = await Post.find({});
-    return res.render('index', { posts });
+    const posts = await Post.find({}).lean();
+    return res.render('index', { posts, title: 'Posts' });
 };
 
 // Renders page for post
 const getPost = async function (req, res, next) {
     const postID = req.params.postID;
     try {
-        const post = await Post.findById(postID);
+        const post = await Post.findById(postID).lean();
         if (!post) {
             const err = Error('Cannot find post');
             err.status = 404;
             throw err;
         }
-        return res.render('post', { post });
+        return res.render('post', { post, title: `Post - ${post.title}` });
     } catch (err) {
         return next(err);
     }
@@ -40,7 +40,7 @@ const deletePost = async function (req, res, next) {
 
 // New post
 const newPostPage = async function (req, res, next) {
-    return res.render('post_new');
+    return res.render('post_new', { title: 'New Post' });
 };
 
 // Create new post
@@ -77,8 +77,8 @@ const modifyPost = async function (req, res, next) {
             post.title = title;
         }
 
-        const r = await post.save();
-        return res.render('post', { post: r });
+        await post.save();
+        return res.redirect('back');
     } catch (err) {
         return next(err);
     }

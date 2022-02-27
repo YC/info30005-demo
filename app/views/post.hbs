@@ -1,0 +1,31 @@
+<a href="/">Back</a>
+<h1>{{{post.title}}}</h1>
+
+<form method="POST" action="./{{{post._id}}}/delete">
+    <button>Delete</button>
+</form>
+
+<p>Description: {{{post.content}}}</p>
+
+<h2>Modify</h2>
+<form method="POST" action="./{{{post._id}}}">
+    <table>
+            <tr>
+                <th>Title</th>
+                <td>
+                    <input type="text" name="title" value="{{{post.title}}}" />
+                </td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>
+                    {{#if post.content}}
+                        <input type="text" name="content" value="{{{post.content}}}" />
+                    {{else}}
+                        <input type="text" name="content" />
+                    {{/if}}
+                </td>
+            </tr>
+        </table>
+        <button>Modify</button>
+</form>
