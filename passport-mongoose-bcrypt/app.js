@@ -3,6 +3,7 @@ const session = require('express-session');
 const path = require('path');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const flash = require('express-flash');
 
 // Initalise models
 const User = require('./models/user');
@@ -19,6 +20,8 @@ app.use(express.urlencoded({ extended: false }));
 // Set up view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(flash());
 
 // Serve public directory
 // app.use(express.static(path.join(__dirname, 'public')));

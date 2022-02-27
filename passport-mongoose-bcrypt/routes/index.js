@@ -2,9 +2,10 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const indexController = require('../controllers/index');
+const authMiddleware = require('./auth');
 
 // Get home page
-router.get('/', indexController.getIndex);
+router.get('/', authMiddleware.isAuthed, indexController.getIndex);
 
 // Get register page
 router.get('/register', indexController.registerPage);
@@ -15,12 +16,16 @@ router.post('/register', indexController.register);
 // Reset
 router.post('/reset', indexController.reset);
 
+// Login page
+router.get('/login', indexController.login);
+
 // Handle login
 router.post(
     '/login',
     passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/',
+        failureFlash: true
     })
 );
 

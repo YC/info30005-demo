@@ -3,6 +3,11 @@
     <head><title>Login</title></head>
     <body>
         <h1>Login</h1>
+
+        <% for (const message of flash) { %>
+        <p><%= message %></p>
+        <% } %>
+
         <form action="reset" method="POST">
             <input type="submit" value="Reset Database" />
         </form>

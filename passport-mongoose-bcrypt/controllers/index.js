@@ -1,23 +1,22 @@
-const User = require('mongoose').models.User;
+const mongoose = require('mongoose');
+const User = mongoose.models.User;
 
 // Home page
-const getIndex = function (req, res, next) {
-    if (req.user) {
-        // Logged in, req.user comes from passport.deserializeUser (app.js)
-        res.render('index', { title: 'Express', user: req.user });
-    } else {
-        // Not logged in, show login page
-        res.render('login');
-    }
+const getIndex = (req, res) => {
+    res.render('index', { title: 'Express', user: req.user });
+};
+
+const login = (req, res) => {
+    res.render('login', { flash: req.flash('error') });
 };
 
 // Register page
-const registerPage = async function (req, res, next) {
+const registerPage = async function (req, res) {
     return res.render('register');
 };
 
 // Register
-const register = async function (req, res, next) {
+const register = async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     const secret = req.body.secret;
@@ -35,12 +34,15 @@ const register = async function (req, res, next) {
 };
 
 // Reset DB
-const reset = async function (req, res, next) {
+const reset = async (req, res) => {
     await User.deleteMany({});
     return res.redirect('/');
 };
 
-module.exports.getIndex = getIndex;
-module.exports.register = register;
-module.exports.registerPage = registerPage;
-module.exports.reset = reset;
+module.exports = {
+    getIndex,
+    login,
+    register,
+    registerPage,
+    reset
+};
