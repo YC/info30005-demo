@@ -3,7 +3,6 @@ Local authentication example with passport.js
 Note that this example does not include a database nor password hashing.
 
 - Express
-- ejs
 - passport.js
 
 ## Routes

@@ -3,7 +3,6 @@ Local authentication example with passport.js
 Note that this example does not include a database nor password hashing.
 
 - Express
-- ejs
 - passport.js
 
 For security, it is essential to hash passwords (using bcrypt, scrypt, pbkdf2 etc.)

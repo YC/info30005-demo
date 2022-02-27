@@ -1,8 +1,7 @@
 # Passport.js with database
-Local authentication example with passport.js  
+Local authentication example with passport.js
 
 - Express
-- ejs
 - passport.js
 
 ## Routes

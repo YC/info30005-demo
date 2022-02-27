@@ -1,6 +1,5 @@
 # Basic app and API without authentication
 - Express
-- ejs
 - mongoose
 
 ## API Routes
@@ -16,9 +15,9 @@
 | Delete comment  | DELETE  | /posts/:postID/comments/:commentID |
 
 ## Client
-View at `http://localhost:3000`. 
+View at `http://localhost:3000`.
 
-Note that the ability to add, modify and delete comments are not included (as opposed to API). 
+Note that the ability to add, modify and delete comments are not included (as opposed to API).
 
 ## References
 Skeleton from [Express application generator](https://expressjs.com/en/starter/generator.html)

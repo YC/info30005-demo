@@ -2,7 +2,6 @@
 Basic setup with:
 
 - Express
-- ejs
 
 ## Routes
 - Home page - `/`
