@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session');
-const path = require('path');
+const handlebars = require('express-handlebars');
 const flash = require('express-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -11,9 +11,19 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Set up view engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// View engine ejs (deprecated)
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
+
+// Set up Handlebars view engine
+app.engine(
+  "hbs",
+  handlebars.engine({
+    defaultlayout: "main",
+    extname: "hbs",
+  })
+);
+app.set("view engine", "hbs");
 
 // Serve public directory
 // app.use(express.static(path.join(__dirname, 'public')));
@@ -77,7 +87,7 @@ const isAuthed = (req, res, next) => {
 
 // Login page
 app.get('/login', (req, res) => {
-    res.render('login', { flash: req.flash('error') });
+    res.render('login', { flash: req.flash('error'), title: 'Login' });
 });
 // Handle login
 app.post(
