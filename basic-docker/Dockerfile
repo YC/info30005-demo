@@ -13,7 +13,7 @@ COPY . .
 RUN npm install
 
 # Use node user (as opposed to root)
-User node
+USER node
 
 # Expose port 3000
 EXPOSE 3000
