@@ -1,0 +1,21 @@
+<h1>Login</h1>
+
+{{#each flash}}
+<p>{{{this}}}</p>
+{{/each}}
+
+<form action="reset" method="POST">
+    <input type="submit" value="Reset Database" />
+</form>
+<p>New user? <a href='/register'>Register</a></p>
+<form action="login" method="POST">
+    <div>
+        <label>Username:</label>
+        <input type="text" name="username" />
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password" />
+    </div>
+    <input type="submit" value="Submit" />
+</form>

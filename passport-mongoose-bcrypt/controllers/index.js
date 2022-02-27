@@ -3,16 +3,19 @@ const User = mongoose.models.User;
 
 // Home page
 const getIndex = (req, res) => {
-    res.render('index', { title: 'Express', user: req.user });
+    res.render('index', { title: 'Express', user: req.user.toJSON() });
 };
 
 const login = (req, res) => {
-    res.render('login', { flash: req.flash('error') });
+    if (req.isAuthenticated()) {
+        return res.redirect('/');
+    }
+    res.render('login', { flash: req.flash('error'), title: 'Login' });
 };
 
 // Register page
 const registerPage = async function (req, res) {
-    return res.render('register');
+    return res.render('register', { title: 'Register' });
 };
 
 // Register
