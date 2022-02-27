@@ -3,6 +3,10 @@
     <head><title>Login</title></head>
     <body>
         <h1>Login</h1>
+        <% for (const message of flash) { %>
+        <p><%= message %></p>
+        <% } %>
+
         <form action="login" method="POST">
             <div>
                 <label>Username:</label>

@@ -1,10 +1,9 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
+const flash = require('express-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-
-const indexRouter = require('./routes/index');
 
 const app = express();
 
@@ -29,6 +28,7 @@ app.use(
         resave: false,
     })
 );
+app.use(flash());
 
 // Set up passport.js with local strategy
 app.use(passport.initialize());
@@ -67,14 +67,43 @@ passport.use(
     })
 );
 
-// Set up routes
-app.use('/', indexRouter);
+// Authentication middleware
+const isAuthed = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+        return res.redirect('/login');
+    }
+    return next();
+}
+
+// Login page
+app.get('/login', (req, res) => {
+    res.render('login', { flash: req.flash('error') });
+});
+// Handle login
+app.post(
+    '/login',
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/',
+        failureFlash: true
+    })
+);
+// Handle logout
+app.post('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
+
+// Main page which requires login
+app.get('/', isAuthed, (req, res) => {
+    res.render('index', { title: 'Express', user: req.user.id });
+});
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    res.locals.message = 'Not found';
-    res.locals.error = {};
-    res.render('error');
+    const err = new Error('Not Found');
+    err.status = 404;
+    return next(err);
 });
 
 // Error handler
