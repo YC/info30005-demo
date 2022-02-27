@@ -1,13 +1,12 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 
 // For production, specify a list of allowed origins instead of *
 const cors = require('cors');
 app.use(cors());
 
 // body parsing middleware
-app.use(bodyParser.json());
+app.use(express.json());
 
 // stores our array of messages
 const messages = [];

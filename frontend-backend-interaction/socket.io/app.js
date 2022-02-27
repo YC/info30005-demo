@@ -2,10 +2,9 @@ const express = require('express');
 const app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-const bodyParser = require('body-parser');
 
 // body parsing middleware
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // init view engine
 app.set('view engine', 'ejs');
