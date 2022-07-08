@@ -31,8 +31,12 @@ router.post(
 
 // Handle logout
 router.post('/logout', function (req, res) {
-    req.logout();
-    res.redirect('/');
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+        }
+        res.redirect('/');
+    });
 });
 
 module.exports = router;

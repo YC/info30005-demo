@@ -100,8 +100,12 @@ app.post(
 );
 // Handle logout
 app.post('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+        }
+        res.redirect('/');
+    });
 });
 
 // Main page which requires login
